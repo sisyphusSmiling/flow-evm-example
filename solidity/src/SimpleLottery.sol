@@ -15,6 +15,7 @@ contract SimpleLottery is Ownable {
     uint256 public endBlock;
     // Address array of purchasers
     address[] public purchasers;
+    // The address of the winning ticket holder
     address public winner;
     // Mapping of purchasers to the number of tickets they have purchased
     mapping(address => uint64) public ticketsPurchased;
