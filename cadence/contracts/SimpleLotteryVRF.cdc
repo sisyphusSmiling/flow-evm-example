@@ -46,12 +46,14 @@ contract SimpleLotteryVRF {
     /// this method, enabling a trustless lottery.
     ///
     access(all)
-    fun endRoundAndPickWinner() {
+    fun resolve() {
+        // Assert that the round is ready to be resolved
+        assert(self.isReadyToResolve(), message: "Round is not yet over.")
         // Request a random number from Cadence runtime
         let randomSeed: UInt64 = revertibleRandom<UInt64>()
         // Endode the calldata
         let calldata: [UInt8] = EVM.encodeABIWithSignature(
-            "endRoundAndPickWinner(uint64)",
+            "resolve(uint64)",
             [randomSeed]
         )
         // Execute call to the SimpleLottery contract
@@ -66,7 +68,7 @@ contract SimpleLotteryVRF {
         let resultValues = EVM.decodeABI(
             types: [Type<EVM.EVMAddress>(), Type<UInt256>()],
             data: result.data
-        ) as! [AnyStruct]
+        ) as [AnyStruct]
         let winner = resultValues[0] as! EVM.EVMAddress
         let rawAmount = resultValues[1] as! UInt256
         // Convert the winning amount to UFix64
@@ -77,10 +79,10 @@ contract SimpleLotteryVRF {
 
     /// Returns whether the lottery round is over and ready to end
     ///
-    access(self)
-    fun isRoundOver(): Bool {
+    access(all)
+    fun isReadyToResolve(): Bool {
         let calldata: [UInt8] = EVM.encodeABIWithSignature(
-            "isRoundOver()",
+            "isReadyToResolve()",
             []
         )
         let result: EVM.Result = self.coa.call(
@@ -93,7 +95,7 @@ contract SimpleLotteryVRF {
         let resultValues = EVM.decodeABI(
             types: [Type<Bool>()],
             data: result.data
-        ) as! [AnyStruct]
+        ) as [AnyStruct]
         return resultValues[0] as! Bool
     }
 

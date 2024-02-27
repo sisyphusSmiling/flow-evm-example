@@ -30,7 +30,7 @@ contract SimpleLottery is Ownable {
 
     // Function to purchase tickets
     function purchaseTickets(uint64 numTickets) public payable {
-        require(isRoundOver() == false, "This lottery is over.");
+        require(isReadyToResolve() == false, "This lottery is over.");
         require(numTickets > 0, "You must purchase at least one ticket.");
         require(msg.value >= numTickets * ticketPrice, "Insufficient funds sent.");
 
@@ -43,8 +43,8 @@ contract SimpleLottery is Ownable {
     }
 
     // Function to end the round, pick a winner - callable only by the contract owner
-    function endRoundAndPickWinner(uint64 randomSeed) public onlyOwner returns (address, uint256) {
-        require(isRoundOver(), "Current round is not yet over.");
+    function resolve(uint64 randomSeed) public onlyOwner returns (address, uint256) {
+        require(isReadyToResolve(), "Current round is not yet over.");
         require(winner != address(0), "Winner has already been picked.");
         if (purchasers.length == 0) {
             emit RoundComplete(address(0), 0);
@@ -69,7 +69,7 @@ contract SimpleLottery is Ownable {
     }
 
     // Returns whether the lottery has passed its end block
-    function isRoundOver() public view returns (bool) {
+    function isReadyToResolve() public view returns (bool) {
         return block.number >= endBlock;
     }
 
