@@ -1,66 +1,26 @@
-## Foundry
+## Flow EVM Example
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+Welcome to Flow EVM! This is an example project to help you get started working with Flow EVM using familiar EVM tooling
+as well as interacting with EVM from the Cadence environment
 
-Foundry consists of:
+## Overview
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+In this example, we're going to a set of smart contracts that codify a simple onchain lottery. The lottery "admin" will
+be `CadenceOwnedAccount` (COA) which resides in a Cadence contract. This Cadence contract will have a single public
+method that enables committment of a verifiably random number retrieved from the Cadence execution environment to the
+lottery contract running in EVM.
 
-## Documentation
+Throughout this example, you'll learn how to:
+- Deploy a Cadence contract
+- Deploy an EVM contract using a `CadenceOwnedAccount`
+- Query EVM state from Cadence
+- Conditionally execute EVM state change from Cadence
+- Orchestrate arbitrary calls to EVM from the Cadence runtime
 
-https://book.getfoundry.sh/
+### Pre-requisites
 
-## Usage
+You'll need Foundry to interact with Flow EVM from the CLI as well as Flow CLI to interact with the Flow blockchain.
 
-### Build
+- [Flow CLI installation](https://developers.flow.com/tools/flow-cli/install)
+- [Foundry installation](https://book.getfoundry.sh/getting-started/installation)
 
-```shell
-$ forge build
-```
-
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
