@@ -1,0 +1,97 @@
+{
+	"contracts": {
+		"Burner": {
+			"source": "./cadence/contracts/standards/Burner.cdc",
+			"aliases": {
+				"emulator": "ee82856bf20e2aa6",
+				"previewnet": "b6763b4399a888c8"
+			}
+		},
+		"EVM": {
+			"source": "./cadence/contracts/standards/EVM.cdc",
+			"aliases": {
+				"emulator": "f8d6e0586b0a20c7",
+				"previewnet": "b6763b4399a888c8"
+			}
+		},
+		"FlowToken": {
+			"source": "./cadence/contracts/standards/FlowToken.cdc",
+			"aliases": {
+				"crescendo": "7e60df042a9c0868",
+				"emulator": "0ae53cb6e3f42a79",
+				"previewnet": "4445e7ad11568276",
+				"testnet": "7e60df042a9c0868"
+			}
+		},
+		"FungibleToken": {
+			"source": "./cadence/contracts/standards/FungibleToken.cdc",
+			"aliases": {
+				"crescendo": "9a0766d93b6608b7",
+				"emulator": "ee82856bf20e2aa6",
+				"previewnet": "a0225e7000ac82a9",
+				"testnet": "9a0766d93b6608b7"
+			}
+		},
+		"FungibleTokenMetadataViews": {
+			"source": "./cadence/contracts/standards/FungibleTokenMetadataViews.cdc",
+			"aliases": {
+				"crescendo": "f233dcee88fe0abe",
+				"emulator": "f8d6e0586b0a20c7",
+				"previewnet": "a0225e7000ac82a9",
+				"testnet": "f233dcee88fe0abe"
+			}
+		},
+		"MetadataViews": {
+			"source": "./cadence/contracts/standards/MetadataViews.cdc",
+			"aliases": {
+				"crescendo": "631e88ae7f1d7c20",
+				"emulator": "f8d6e0586b0a20c7",
+				"previewnet": "b6763b4399a888c8",
+				"testnet": "631e88ae7f1d7c20"
+			}
+		},
+		"NonFungibleToken": {
+			"source": "./cadence/contracts/standards/NonFungibleToken.cdc",
+			"aliases": {
+				"crescendo": "631e88ae7f1d7c20",
+				"emulator": "f8d6e0586b0a20c7",
+				"previewnet": "b6763b4399a888c8",
+				"testnet": "631e88ae7f1d7c20"
+			}
+		},
+		"ViewResolver": {
+			"source": "./cadence/contracts/standards/ViewResolver.cdc",
+			"aliases": {
+				"crescendo": "631e88ae7f1d7c20",
+				"emulator": "f8d6e0586b0a20c7",
+				"previewnet": "b6763b4399a888c8",
+				"testnet": "631e88ae7f1d7c20"
+			}
+		}
+	},
+	"networks": {
+		"crescendo": "access.crescendo.nodes.onflow.org:9000",
+		"previewnet": "access.previewnet.nodes.onflow.org:9000",
+		"emulator": "127.0.0.1:3569",
+		"testnet": "access.devnet.nodes.onflow.org:9000"
+	},
+	"accounts": {
+		"emulator-account": {
+			"address": "f8d6e0586b0a20c7",
+			"key": "91a22fbd87392b019fbe332c32695c14cf2ba5b6521476a8540228bdf1987068"
+		},
+		"emulator-flow": {
+			"address": "0ae53cb6e3f42a79",
+			"key": "686779d775e5fcbf8d2f4a85cb4c53525d02b7ef53230d180fc16f35d9b7d025"
+		},
+		"emulator-ft": {
+			"address": "ee82856bf20e2aa6",
+			"key": "686779d775e5fcbf8d2f4a85cb4c53525d02b7ef53230d180fc16f35d9b7d025"
+		}
+	},
+	"deployments": {
+		"emulator": {
+			"emulator-account": []
+		}
+	}
+}
