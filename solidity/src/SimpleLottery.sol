@@ -24,12 +24,13 @@ contract SimpleLottery is Ownable {
 
     constructor() Ownable(msg.sender) {
         ticketPrice = 1 ether;
+        // Delay the end of this lottery by 100 blocks
         endBlock = block.number + 100;
     }
 
     // Function to purchase tickets
     function purchaseTickets(uint64 numTickets) public payable {
-        require(block.number < endBlock, "This lottery is over.");
+        require(isRoundOver() == false, "This lottery is over.");
         require(numTickets > 0, "You must purchase at least one ticket.");
         require(msg.value >= numTickets * ticketPrice, "Insufficient funds sent.");
 
@@ -43,7 +44,7 @@ contract SimpleLottery is Ownable {
 
     // Function to end the round, pick a winner - callable only by the contract owner
     function endRoundAndPickWinner(uint64 randomSeed) public onlyOwner returns (address, uint256) {
-        require(block.number >= endBlock, "Current round is not yet over.");
+        require(isRoundOver(), "Current round is not yet over.");
         if (purchasers.length == 0) {
             emit RoundComplete(address(0), 0);
             return (address(0), 0);
@@ -64,6 +65,11 @@ contract SimpleLottery is Ownable {
 
         (bool sent,) = msg.sender.call{value: address(this).balance}("");
         require(sent, "Failed to send FLOW.");
+    }
+
+    // Returns whether the lottery has passed its end block
+    function isRoundOver() public view returns (bool) {
+        return block.number >= endBlock;
     }
 
     // Retrieves the number of tickets purchased
