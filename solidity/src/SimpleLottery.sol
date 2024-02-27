@@ -45,6 +45,7 @@ contract SimpleLottery is Ownable {
     // Function to end the round, pick a winner - callable only by the contract owner
     function endRoundAndPickWinner(uint64 randomSeed) public onlyOwner returns (address, uint256) {
         require(isRoundOver(), "Current round is not yet over.");
+        require(winner != address(0), "Winner has already been picked.");
         if (purchasers.length == 0) {
             emit RoundComplete(address(0), 0);
             return (address(0), 0);
