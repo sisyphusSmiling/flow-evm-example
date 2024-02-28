@@ -29,7 +29,8 @@ You'll need Foundry to interact with Flow EVM from the CLI as well as Flow CLI t
 
 - [MetaMask installed & configured for Flow EVM PreviewNet funded with $FLOW](https://developers.flow.com/evm/using)
 - [Flow CLI installation](https://developers.flow.com/tools/flow-cli/install)
-- [Foundry installation](https://book.getfoundry.sh/getting-started/installation)
+- [[Optional] Foundry installation](https://book.getfoundry.sh/getting-started/installation) to compile Solidity
+  contract
 
 ### Step 1: Create a Flow account
 
@@ -152,14 +153,27 @@ network. Next you'll want to copy the [contents of `SimpleLottery.sol`](./solidi
 contract file on Remix. Then click on "Solidity Compiler" and compile the contract. Once compiled, click on "Deploy &
 Run Transactions" and select the `SimpleLottery` contract from the dropdown.
 
+<!-- TODO: Add screenshot -->
+
 Next, we'll refer to the `deployedContractAddress` value emitted from the `SimpleLotteryVRF` deployment event. Scroll
 back up in your terminal, copy this value and paste it into the `At Address` field in Remix. Click "At Address" and you
 should see the `SimpleLottery` contract appear in the "Deployed Contracts" section.
+
+<!-- TODO: Add example event text -->
 
 Finally, we can purchase our lottery ticket by calling the `purchaseTickets` method which is a payable method that takes a
 `uint256` value as an argument. Enter `1` as an argument and also enter `1 ether` as the value to transmit in
 the "value" field above to purchase your lottery ticket. Click on `purchaseTickets` and you should see a MetaMask
 transaction popup. Confirm the transaction and you should see a successful transaction in the Remix logs.
+
+<!-- TODO: Add example logs -->
+
+And if we want to validate that the ticket was purchased, we can call the `getNumberOfTicketsPurchased` method to check
+that the ticket count incremented. We can do this using EVM tooling - in this case Foundry's `cast` command:
+
+```sh
+cast call --rpc-url https://previewnet.evm.nodes.onflow.org <LOTTERY_CONTRACT_ADDRESS> "getNumberOfTicketsPurchased()"
+```
 
 #### From Cadence
 
