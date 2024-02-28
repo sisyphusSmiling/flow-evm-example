@@ -70,7 +70,10 @@ using this account. Under the `"accounts"` field, replace the address under `"pr
 ```json
 "previewnet-lottery": {
     "address": "<YOUR_PREVIEWNET_ADDRESS>",
-    "key": "<PRIVATE_KEY>"
+    "key": {
+        "type": "file",
+        "location": "./previewnet-lottery.pkey"
+    }
 }
 ```
 
