@@ -95,7 +95,7 @@
 			"key": "686779d775e5fcbf8d2f4a85cb4c53525d02b7ef53230d180fc16f35d9b7d025"
 		},
 		"previewnet-lottery": {
-			"address": "2b94bf4375741504",
+			"address": "0xaff833f613fe94bc",
 			"key": {
 				"type": "file",
 				"location": "./previewnet-lottery.pkey"
